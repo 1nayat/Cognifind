@@ -1,0 +1,6 @@
+@Cognifind_HostAddress = http://localhost:5147
+
+GET {{Cognifind_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
