@@ -10,7 +10,7 @@ namespace Cognifind.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }  // ✅ Your table
+        public DbSet<User> Users { get; set; }  
     }
 }
 

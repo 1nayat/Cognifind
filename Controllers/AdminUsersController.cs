@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Cognifind.Api.Dtos.Admin;
 
 
-namespace Cognifind.Api.Controllers
+namespace Cognifind_Backend.Api.Controllers
 {
     [ApiController]
     [Route("api/admin/users")]
@@ -273,4 +273,5 @@ namespace Cognifind.Api.Controllers
     }
 
 
-    }
+    }  
+   

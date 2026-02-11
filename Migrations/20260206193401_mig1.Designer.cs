@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Cognifind.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251121194708_mig1")]
+    [Migration("20260206193401_mig1")]
     partial class mig1
     {
         /// <inheritdoc />

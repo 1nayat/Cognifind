@@ -2,6 +2,7 @@
 using Cognifind;
 using Cognifind.Api.Repositories;
 using Cognifind.Data;
+using CognifindAPI.Controllers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -24,6 +25,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
+// ✅ Add this:
+builder.Services.AddHttpClient<MapsController>();
 
 builder.Services.AddSwaggerGen(c =>
 {
