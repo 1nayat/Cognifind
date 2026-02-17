@@ -85,6 +85,8 @@ builder.Services
 builder.Services.AddAuthorization();
 
 var app = builder.Build();
+await SuperAdminSeeder.SeedSuperAdminAsync(app.Services, app.Configuration);
+
 
 app.UseCors("DevCors");
 
