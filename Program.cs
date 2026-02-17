@@ -79,7 +79,7 @@ builder.Services
             ValidIssuer = jwtSection.GetValue<string>("Issuer"),
             ValidAudience = jwtSection.GetValue<string>("Audience"),
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key!))
-        };
+        };  
     });
 
 builder.Services.AddAuthorization();

@@ -228,9 +228,10 @@ namespace Cognifind_Backend.Api.Controllers
 
         // GET: api/admin/users/all
         // SuperAdmin: get all Users + Admins, optionally filtered by role
-       // [Authorize(Roles = "SuperAdmin")]
+        // [Authorize(Roles = "SuperAdmin")]
+        [AllowAnonymous]
         [HttpGet("all")]
-        public async Task<IActionResult> GetAllUsersAndAdminsForSuperAdmin([FromQuery] string? role = "All")
+        public async Task<IActionResult> GetAllUsers([FromQuery] string? role = "All")
         {
             List<User> users;
 
@@ -246,11 +247,7 @@ namespace Cognifind_Backend.Api.Controllers
             }
             else
             {
-                // "all" or anything else -> return Users + Admins
-                var all = await _userRepo.GetAllAsync();
-                users = all
-                    .Where(u => u.Role == UserRole.User || u.Role == UserRole.Admin)
-                    .ToList();
+                users = await _userRepo.GetAllAsync();
             }
 
             var result = users
@@ -270,8 +267,9 @@ namespace Cognifind_Backend.Api.Controllers
         }
 
 
+
     }
 
 
-    }  
+}  
    
