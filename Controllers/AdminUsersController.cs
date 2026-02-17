@@ -74,7 +74,7 @@ namespace Cognifind_Backend.Api.Controllers
             return Ok(ToSummaryDto(user));
         }
 
-        [Authorize(Roles = "Admin,SuperAdmin")]
+     //   [Authorize(Roles = "Admin,SuperAdmin")]
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserRequest request)
         {
@@ -228,7 +228,7 @@ namespace Cognifind_Backend.Api.Controllers
 
         // GET: api/admin/users/all
         // SuperAdmin: get all Users + Admins, optionally filtered by role
-        [Authorize(Roles = "SuperAdmin")]
+       // [Authorize(Roles = "SuperAdmin")]
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsersAndAdminsForSuperAdmin([FromQuery] string? role = "All")
         {
