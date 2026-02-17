@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Cognifind.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260217064738_mig1")]
+    [Migration("20260217073454_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
