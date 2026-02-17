@@ -10,6 +10,7 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCors", policy =>
@@ -18,20 +19,18 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod());
 });
 
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("Database")));
+// ✅ FIXED HERE
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("Database")));
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-
-// ✅ Add this:
 builder.Services.AddHttpClient<MapsController>();
 
+// Swagger + JWT
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Cognifind API", Version = "v1" });
@@ -52,7 +51,6 @@ builder.Services.AddSwaggerGen(c =>
     };
 
     c.AddSecurityDefinition("Bearer", jwtSecurityScheme);
-
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         { jwtSecurityScheme, Array.Empty<string>() }
@@ -88,19 +86,17 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-//await SuperAdminSeeder.SeedSuperAdminAsync(app.Services, app.Configuration);
-
 app.UseCors("DevCors");
 
-
-    app.UseSwagger();
-    app.UseSwaggerUI();
-
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Render PORT binding
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Urls.Add($"http://*:{port}");
 
